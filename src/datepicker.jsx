@@ -4,7 +4,6 @@ var DateUtil = require('./util/date');
 var Calendar = require('./calendar');
 var DateInput = require('./date_input');
 var moment = require('moment');
-var Map = require('immutable').Map;
 
 var DatePicker = React.createClass({
   getDefaultProps: function() {
@@ -13,7 +12,6 @@ var DatePicker = React.createClass({
       locale: 'en',
       dateFormatCallendar: "MMMM YYYY",
       moment: moment,
-      callendarProps: {},
       dateInputProps: {},
     };
   },
@@ -62,23 +60,20 @@ var DatePicker = React.createClass({
 
   calendar: function() {
     if (this.state.focus) {
-      var callendarProps = new Map({
-        weekdays: this.props.weekdays,
-        locale: this.props.locale,
-        moment: this.props.moment,
-        dateFormat: this.props.dateFormatCallendar,
-        selected: this.props.selected,
-        onSelect: this.handleSelect,
-        hideCalendar: this.hideCalendar,
-        minDate: this.props.minDate,
-        maxDate: this.props.maxDate,
-        excludeDates: this.props.excludeDates,
-        weekStart: this.props.weekStart
-      }).merge(new Map(this.props.callendarProps));
-        
       return (
         <Popover>
-          <Calendar {...callendarProps.toJS()}/>
+          <Calendar
+            weekdays={this.props.weekdays}
+            locale={this.props.locale}
+            moment={this.props.moment}
+            dateFormat={this.props.dateFormatCallendar}
+            selected={this.props.selected}
+            onSelect={this.handleSelect}
+            hideCalendar={this.hideCalendar}
+            minDate={this.props.minDate}
+            maxDate={this.props.maxDate}
+            excludeDates={this.props.excludeDates}
+            weekStart={this.props.weekStart}/>
         </Popover>
       );
     }
@@ -86,22 +81,24 @@ var DatePicker = React.createClass({
 
   render: function() {
     var dateInputProps = new Map({
-      name: this.props.name,
-      date: this.props.selected,
-      dateFormat: this.props.dateFormat,
-      focus: this.state.focus,
-      onFocus: this.handleFocus,
-      handleClick: this.onInputClick,
-      handleEnter: this.hideCalendar,
-      setSelected: this.setSelected,
-      clearSelected: this.clearSelected,
-      hideCalendar: this.hideCalendar,
-      placeholderText: this.props.placeholderText
+      
     }).merge(new Map(this.props.dateInputProps));
 
     return (
       <div>
-        <DateInput {...dateInputProps.toJS()}/>
+        <DateInput
+          name={this.props.name}
+          date={this.props.selected}
+          dateFormat={this.props.dateFormat}
+          focus={this.state.focus}
+          onFocus={this.handleFocus}
+          handleClick={this.onInputClick}
+          handleEnter={this.hideCalendar}
+          setSelected={this.setSelected}
+          clearSelected={this.clearSelected}
+          hideCalendar={this.hideCalendar}
+          placeholderText={this.props.placeholderText}
+          customProps={this.props.dateInputProps}/>
         {this.calendar()}
       </div>
     );

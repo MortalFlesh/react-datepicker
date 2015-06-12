@@ -1,6 +1,7 @@
 var React = require('react');
 var DateUtil = require('./util/date');
 var moment = require('moment');
+var Map = require('immutable').Map;
 
 var DateInput = React.createClass({
 
@@ -68,17 +69,20 @@ var DateInput = React.createClass({
   },
 
   render: function() {
-    return <input
-      ref="input"
-      type="text"
-      name={this.props.name}
-      value={this.state.value}
-      onClick={this.handleClick}
-      onKeyDown={this.handleKeyDown}
-      onFocus={this.props.onFocus}
-      onChange={this.handleChange}
-      className="datepicker__input"
-      placeholder={this.props.placeholderText} />;
+    var defaultProps = new Map({
+      ref:"input",
+      type:"text",
+      name: this.props.name,
+      value: this.state.value,
+      onClick: this.handleClick,
+      onKeyDown: this.handleKeyDown,
+      onFocus: this.props.onFocus,
+      onChange: this.handleChange,
+      className:"datepicker__input",
+      placeholder: this.props.placeholderText
+    }).merge(new Map(this.props.customProps));
+      
+    return <input {...defaultProps.toJS()}/>;
   }
 });
 
