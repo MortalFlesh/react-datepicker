@@ -74,7 +74,7 @@ var DatePicker = React.createClass({
         maxDate: this.props.maxDate,
         excludeDates: this.props.excludeDates,
         weekStart: this.props.weekStart
-      }).merge(this.props.callendarProps);
+      }).merge(new Map(this.props.callendarProps));
         
       return (
         <Popover>
@@ -97,7 +97,7 @@ var DatePicker = React.createClass({
       clearSelected: this.clearSelected,
       hideCalendar: this.hideCalendar,
       placeholderText: this.props.placeholderText
-    }).merge(this.props.dateInputProps);
+    }).merge(new Map(this.props.dateInputProps));
 
     return (
       <div>

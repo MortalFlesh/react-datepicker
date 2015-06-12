@@ -133,7 +133,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        maxDate: this.props.maxDate,
 	        excludeDates: this.props.excludeDates,
 	        weekStart: this.props.weekStart
-	      }).merge(this.props.callendarProps);
+	      }).merge(new Map(this.props.callendarProps));
 
 	      return React.createElement(
 	        Popover,
@@ -156,7 +156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      clearSelected: this.clearSelected,
 	      hideCalendar: this.hideCalendar,
 	      placeholderText: this.props.placeholderText
-	    }).merge(this.props.dateInputProps);
+	    }).merge(new Map(this.props.dateInputProps));
 
 	    return React.createElement(
 	      "div",
