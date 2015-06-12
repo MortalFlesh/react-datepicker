@@ -80,10 +80,6 @@ var DatePicker = React.createClass({
   },
 
   render: function() {
-    var dateInputProps = new Map({
-      
-    }).merge(new Map(this.props.dateInputProps));
-
     return (
       <div>
         <DateInput
