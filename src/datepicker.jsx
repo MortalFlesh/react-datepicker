@@ -4,7 +4,7 @@ var DateUtil = require('./util/date');
 var Calendar = require('./calendar');
 var DateInput = require('./date_input');
 var moment = require('moment');
-var immutable = require('immutable');
+var Map = require('immutable').Map;
 
 var DatePicker = React.createClass({
   getDefaultProps: function() {
@@ -85,7 +85,7 @@ var DatePicker = React.createClass({
   },
 
   render: function() {
-    var dateInputProps = new immutable.Map({
+    var dateInputProps = new Map({
       name: this.props.name,
       date: this.props.selected,
       dateFormat: this.props.dateFormat,

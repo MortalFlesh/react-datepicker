@@ -62,7 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Calendar = __webpack_require__(5);
 	var DateInput = __webpack_require__(1);
 	var moment = __webpack_require__(2);
-	var immutable = __webpack_require__(8);
+	var Map = __webpack_require__(8).Map;
 
 	var DatePicker = React.createClass({
 	  displayName: "DatePicker",
@@ -144,7 +144,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  render: function render() {
-	    var dateInputProps = new immutable.Map({
+	    var dateInputProps = new Map({
 	      name: this.props.name,
 	      date: this.props.selected,
 	      dateFormat: this.props.dateFormat,
